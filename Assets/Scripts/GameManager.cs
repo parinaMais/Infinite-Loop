@@ -23,9 +23,10 @@ public class GameManager : MonoBehaviour
 
 		ball.Integrate(deltaTime);
 
+		ball.IsColliding(false);
+
 		for (int i = 0; i <= boxes.Length - 1; i++)
 		{
-			ball.IsColliding(false);
 			boxes[i].IsColliding(false);
 
 			if (CollisionDetection.IsColliding(ball, boxes[i]))
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
 				ball.IsColliding(true);
 				boxes[i].IsColliding(true);
 			}
-	}
+		}
     }
 
     private void MouseInput() 
