@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Ball : MonoBehaviour
+public class Ball : Body
 {
     [SerializeField] private float mass = 1f;
 
 	private Vector2 velocity, acceleration, sumForces, position;
 
-    float invMass;
+    private float invMass;
 
 	private void Awake()
 	{
@@ -18,9 +18,16 @@ public class Ball : MonoBehaviour
 
         if (mass != 0.0f) invMass = (1 / mass);
         else invMass = 0.0f;
+
+        radius = transform.localScale.x / 2f;
     }
 
-    public void AddForce(Vector2 force) 
+	private void Update()
+	{
+        Debug.Log(gameObject.name + "is colliding: " + isColliding);
+	}
+
+	public void AddForce(Vector2 force) 
     {
         sumForces += force;
     }

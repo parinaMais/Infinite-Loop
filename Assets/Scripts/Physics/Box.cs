@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : Body
 {
     private float width, height;
 
@@ -13,6 +13,8 @@ public class Box : MonoBehaviour
 	{
         width = this.transform.localScale.x;
         height = this.transform.localScale.y;
+
+		radius = width;
 	}
 
 	private void Start()
@@ -34,10 +36,10 @@ public class Box : MonoBehaviour
 			worldVertices[i] += transform.position.ToVector2();
 		}
 
-		for (int i = 0; i < 3; i++)
-		{
-			Debug.Log(gameObject.name + "Local " + localVertices[i]);
-			Debug.Log(gameObject.name + "World " + worldVertices[i]);
-		}
+		//for (int i = 0; i < 3; i++)
+		//{
+		//	Debug.Log(gameObject.name + "Local " + localVertices[i]);
+		//	Debug.Log(gameObject.name + "World " + worldVertices[i]);
+		//}
 	}
 }

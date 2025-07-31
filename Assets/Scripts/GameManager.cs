@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
 	[Header("Components")]
     [SerializeField] private Ball ball;
+	[SerializeField] private Body[] bodies;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
 
@@ -13,14 +14,32 @@ public class GameManager : MonoBehaviour
 	private bool pressedMouseButton = false;
 	void Update()
     {
+		// TODO: verificar se a gente nao refatora isso pra nao misturar a leitura de input com o resto so q talvez nao precise ne
 		MouseInput();
 
         float deltaTime = Time.deltaTime;
         if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
-
+		
 		//ball.AddForce();
 
 		ball.Integrate(deltaTime);
+
+		for (int i = 0; i <= bodies.Length - 1; i++)
+		{
+			for (int j = i + 1; j < bodies.Length; j++)
+			{
+				bodies[i].IsColliding(false);
+				bodies[j].IsColliding(false);
+
+				//Contact contact;
+
+				if (CollisionDetection.IsColliding(bodies[i], bodies[j]))
+				{
+					bodies[i].IsColliding(true);
+					bodies[j].IsColliding(true);
+				}
+			}
+		}
     }
 
     private void MouseInput() 
@@ -41,7 +60,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	// TODO: isso tem que ser um raiozinho bonitinho pra build e temos que botar uma artezinha do cursor aparecendo o tempo todo tb
 	private void OnDrawGizmos()
 	{
 		if (pressedMouseButton)
