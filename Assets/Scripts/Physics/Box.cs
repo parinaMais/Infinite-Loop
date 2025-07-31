@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : Body
+public class Box : MonoBehaviour
 {
     private float width, height;
 
+	private bool isColliding = false;
+
     private Vector2[] localVertices = new Vector2[4];
     private Vector2[] worldVertices = new Vector2[4];
+
+	// TODO DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
+	private MeshRenderer renderer;
 
 	private void Awake()
 	{
         width = this.transform.localScale.x;
         height = this.transform.localScale.y;
-
-		radius = width;
 	}
 
 	private void Start()
@@ -23,8 +26,6 @@ public class Box : Body
 		localVertices[1] = new Vector2(width / 2.0f, -height / 2.0f);
 		localVertices[2] = new Vector2(width / 2.0f, height / 2.0f);
 		localVertices[3] = new Vector2(-width / 2.0f, height / 2.0f);
-
-		//worldVertices = localVertices; //TODO: verificar se não posso fazer isso, acho que não por array ser ref type, mas confirmar
 
 		worldVertices[0] = new Vector2(-width / 2.0f, -height / 2.0f);
 		worldVertices[1] = new Vector2(width / 2.0f, -height / 2.0f);
@@ -36,10 +37,35 @@ public class Box : Body
 			worldVertices[i] += transform.position.ToVector2();
 		}
 
-		//for (int i = 0; i < 3; i++)
-		//{
-		//	Debug.Log(gameObject.name + "Local " + localVertices[i]);
-		//	Debug.Log(gameObject.name + "World " + worldVertices[i]);
-		//}
+		renderer = GetComponentInChildren<MeshRenderer>();
+	}
+
+	private void Update()
+	{
+		if (isColliding)
+		{
+			renderer.material.SetColor("_BaseColor", Color.red);
+		}
+		else
+		{
+			renderer.material.SetColor("_BaseColor", Color.white);
+		}
+	}
+
+	public Vector2[] GetWorldVertices() 
+	{
+		return worldVertices;
+	}
+
+	public void IsColliding(bool state)
+	{
+		isColliding = state;
+	}
+
+	public Vector2 EdgeAt(int index) 
+	{
+		int currVertex = index;
+		int nextVertex = (index + 1) % worldVertices.Length;
+		return worldVertices[nextVertex] - worldVertices[currVertex];
 	}
 }

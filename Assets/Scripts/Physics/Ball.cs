@@ -3,26 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Ball : Body
+public class Ball : MonoBehaviour
 {
     [SerializeField] private float mass = 1f;
 
-	private Vector2 acceleration, sumForces;
+    // DEBUG ONLY, depois private de novo //
+    public Vector2 position;
 
-    // TODO: depois tirar
+	private Vector2 velocity, acceleration, sumForces;
+
+    private float invMass, radius;
+
+    private bool isColliding = false;
+
+    // TODO DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
     private MeshRenderer renderer;
 
 	private void Awake()
 	{
-        position.x = transform.position.x;
-        position.y = transform.position.y;
+        position = transform.position.ToVector2();
 
         if (mass != 0.0f) invMass = (1 / mass);
         else invMass = 0.0f;
 
         radius = transform.localScale.x / 2f;
-
-        restitution = 1f;
 
         renderer = GetComponentInChildren<MeshRenderer>();
     }
@@ -61,5 +65,15 @@ public class Ball : Body
         transform.position = position.ToVector3();
 
         ClearForces();
+    }
+
+    public void IsColliding(bool state) 
+    {
+        isColliding = state;
+    }
+
+    public float GetRadius() 
+    {
+        return radius;
     }
 }
