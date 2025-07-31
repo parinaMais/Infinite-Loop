@@ -16,9 +16,9 @@ public class CollisionDetection : MonoBehaviour
         bool isColliding = ab.magnitude <= (radiusSum);
 
         if (!isColliding) return false;
-		
-		normal = ab.normalized;
 
+		normal = ab.normalized;
+		
 		start = b.transform.position.ToVector2() - normal * b.GetRadius();
 		end = a.transform.position.ToVector2() + normal * a.GetRadius();
 
@@ -31,8 +31,8 @@ public class CollisionDetection : MonoBehaviour
 	{
 		float da = depth / (a.GetInvMass() + b.GetInvMass()) * a.GetInvMass();
 
-		//a.position -= normal * da;
-		a.velocity *= -1f;
+		a.position -= normal * da;
+		//a.velocity *= -1f * normal.GetNormal();
 	}
 
 	public static void ResolveCollision(Body a, Body b) 

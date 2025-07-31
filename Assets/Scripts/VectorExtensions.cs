@@ -11,4 +11,9 @@ public static class VectorExtensionMethods
 	{
 		return new Vector2(v.x, v.y);
 	}
+
+	public static Vector2 GetNormal(this Vector2 v) 
+	{
+		return new Vector2(v.y, -v.x).normalized;
+	}
 }
