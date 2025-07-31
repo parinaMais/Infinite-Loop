@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7d0407df7216d4c91ff4f5df5c428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
 --- !u!1 &859615992
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7d0407df7216d4c91ff4f5df5c428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
 --- !u!1 &1366830918
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7d0407df7216d4c91ff4f5df5c428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
 --- !u!1 &1492367948
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1774087160}
   bodies:
-  - {fileID: 2046875105}
+  - {fileID: 2046875107}
   mouseStrength: 50
 --- !u!1 &1774087159
 GameObject:
@@ -921,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03c98eaa5f7bc74db7f41ffae320559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
   mass: 1
 --- !u!4 &1774087161
 Transform:
@@ -1030,7 +1034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2046875106}
-  - component: {fileID: 2046875105}
+  - component: {fileID: 2046875107}
   m_Layer: 0
   m_Name: Ball_2
   m_TagString: Untagged
@@ -1038,19 +1042,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2046875105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2046875104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d03c98eaa5f7bc74db7f41ffae320559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mass: 1
 --- !u!4 &2046875106
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,6 +1058,20 @@ Transform:
   - {fileID: 859615993}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2046875107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046875104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2258d82a5fda1a439c5ea25496a9529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
+  mass: 1
 --- !u!1 &2058203530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7d0407df7216d4c91ff4f5df5c428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

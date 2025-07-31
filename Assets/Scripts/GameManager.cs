@@ -29,14 +29,13 @@ public class GameManager : MonoBehaviour
 			ball.IsColliding(false);
 			bodies[i].IsColliding(false);
 
-			//Contact contact;
-
 			if (CollisionDetection.IsColliding(ball, bodies[i]))
 			{
+				CollisionDetection.ResolvePenetration(ball, bodies[i]);
 				ball.IsColliding(true);
 				bodies[i].IsColliding(true);
 			}
-		}
+	}
     }
 
     private void MouseInput() 

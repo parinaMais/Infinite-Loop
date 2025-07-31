@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Contact : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    static Vector2 start;
+    static Vector2 end;
 
-    // Update is called once per frame
-    void Update()
+    static Vector2 normal;
+    static float depth;
+
+    public static void ResolvePenetration(Body a, Body b) 
     {
-        
+        float da = depth / (a.GetInvMass() + b.GetInvMass()) * a.GetInvMass();
+
+        a.position -= normal * da;
+	}
+
+    public static void ResolveCollision() 
+    {
+
     }
 }

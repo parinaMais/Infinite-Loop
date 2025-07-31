@@ -6,7 +6,9 @@ public class Body : MonoBehaviour
 {
     protected bool isColliding;
 
-    protected float radius;
+	public Vector2 position;
+
+	protected float radius, invMass;
 
     public void IsColliding(bool value) 
     {
@@ -16,5 +18,10 @@ public class Body : MonoBehaviour
     public float GetRadius() 
     {
         return radius;
+    }
+
+    public float GetInvMass()
+    {
+        return invMass;
     }
 }

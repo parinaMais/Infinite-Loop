@@ -7,15 +7,10 @@ public class Ball_TEST : Body
 {
     [SerializeField] private float mass = 1f;
 
-    private float invMass;
-
     private MeshRenderer renderer;
 
 	private void Awake()
 	{
-        if (mass != 0.0f) invMass = (1 / mass);
-        else invMass = 0.0f;
-
         radius = transform.localScale.x / 2f;
 
         renderer = GetComponentInChildren<MeshRenderer>();

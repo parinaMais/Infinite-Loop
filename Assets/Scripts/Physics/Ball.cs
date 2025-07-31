@@ -7,10 +7,9 @@ public class Ball : Body
 {
     [SerializeField] private float mass = 1f;
 
-	private Vector2 velocity, acceleration, sumForces, position;
+	private Vector2 velocity, acceleration, sumForces;
 
-    private float invMass;
-
+    // TODO: depois tirar
     private MeshRenderer renderer;
 
 	private void Awake()
@@ -26,6 +25,7 @@ public class Ball : Body
         renderer = GetComponentInChildren<MeshRenderer>();
     }
 
+    // DEBUG - PRA VERIFICAR A COLISAO // TODO: depois tirar
 	private void Update()
 	{
         if (isColliding)
