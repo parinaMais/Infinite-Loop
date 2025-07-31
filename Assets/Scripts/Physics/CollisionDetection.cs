@@ -130,12 +130,9 @@ public class CollisionDetection : MonoBehaviour
 		return true;
 	}
 
-	public static void ResolvePenetration(Ball a, Box b)
+	public static void ResolvePenetration(Ball ball)
 	{
-		//float da = depth / (a.GetInvMass() + b.GetInvMass()) * a.GetInvMass();
-
-		//a.position -= normal * da;
-		////a.velocity *= -1f * normal.GetNormal();
+		ball.position += normal * depth;
 	}
 
 	public static void ResolveCollision(Ball a, Box b) 

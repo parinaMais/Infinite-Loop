@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
 			if (CollisionDetection.IsColliding(ball, boxes[i]))
 			{
-				CollisionDetection.ResolvePenetration(ball, boxes[i]);
+				CollisionDetection.ResolvePenetration(ball);
 				ball.IsColliding(true);
 				boxes[i].IsColliding(true);
 			}
@@ -40,24 +40,24 @@ public class GameManager : MonoBehaviour
 
     private void MouseInput() 
     {
-		mouseMotion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mouseMotion.z = 0f;
-		ball.position = mouseMotion;
+		//mouseMotion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//mouseMotion.z = 0f;
+		//ball.position = mouseMotion;
 
-		//if (Input.GetMouseButton(0)) // 0 for left click, 1 right, 2 middle
-		//{
-		//	pressedMouseButton = true;
-		//	mouseMotion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		//	mouseMotion.z = 0f;
-		//}
+		if (Input.GetMouseButton(0)) // 0 for left click, 1 right, 2 middle
+		{
+			pressedMouseButton = true;
+			mouseMotion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mouseMotion.z = 0f;
+		}
 
-		//if (Input.GetMouseButtonUp(0))
-		//{
-		//	pressedMouseButton = false;
-		//	Vector2 mouseImpulseDirection = (ball.transform.position - mouseMotion).normalized;
-		//	float mouseImpulseMagnitude = (ball.transform.position - mouseMotion).magnitude * mouseStrength;
-		//	ball.AddForce(mouseImpulseDirection * mouseImpulseMagnitude);
-		//}
+		if (Input.GetMouseButtonUp(0))
+		{
+			pressedMouseButton = false;
+			Vector2 mouseImpulseDirection = (ball.transform.position - mouseMotion).normalized;
+			float mouseImpulseMagnitude = (ball.transform.position - mouseMotion).magnitude * mouseStrength;
+			ball.AddForce(mouseImpulseDirection * mouseImpulseMagnitude);
+		}
 	}
 
 	private void OnDrawGizmos()
