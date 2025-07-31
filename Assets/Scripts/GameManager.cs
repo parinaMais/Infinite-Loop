@@ -26,18 +26,15 @@ public class GameManager : MonoBehaviour
 
 		for (int i = 0; i <= bodies.Length - 1; i++)
 		{
-			for (int j = i + 1; j < bodies.Length; j++)
+			ball.IsColliding(false);
+			bodies[i].IsColliding(false);
+
+			//Contact contact;
+
+			if (CollisionDetection.IsColliding(ball, bodies[i]))
 			{
-				bodies[i].IsColliding(false);
-				bodies[j].IsColliding(false);
-
-				//Contact contact;
-
-				if (CollisionDetection.IsColliding(bodies[i], bodies[j]))
-				{
-					bodies[i].IsColliding(true);
-					bodies[j].IsColliding(true);
-				}
+				ball.IsColliding(true);
+				bodies[i].IsColliding(true);
 			}
 		}
     }

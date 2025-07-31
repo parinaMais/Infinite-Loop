@@ -890,7 +890,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1774087160}
   bodies:
-  - {fileID: 1774087160}
   - {fileID: 2046875105}
   mouseStrength: 50
 --- !u!1 &1774087159
@@ -1061,7 +1060,7 @@ Transform:
   m_GameObject: {fileID: 2046875104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.42, y: -1.14, z: 0}
+  m_LocalPosition: {x: -5.31, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

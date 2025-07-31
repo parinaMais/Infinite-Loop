@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Ball : Body
+public class Ball_TEST : Body
 {
     [SerializeField] private float mass = 1f;
-
-	private Vector2 velocity, acceleration, sumForces, position;
 
     private float invMass;
 
@@ -15,9 +13,6 @@ public class Ball : Body
 
 	private void Awake()
 	{
-        position.x = transform.position.x;
-        position.y = transform.position.y;
-
         if (mass != 0.0f) invMass = (1 / mass);
         else invMass = 0.0f;
 
@@ -28,7 +23,10 @@ public class Ball : Body
 
 	private void Update()
 	{
-        if (isColliding)
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(mousePos.x, mousePos.y, 0f);
+
+		if (isColliding)
         {
             renderer.material.SetColor("_BaseColor", Color.red);
         }
@@ -37,27 +35,4 @@ public class Ball : Body
 			renderer.material.SetColor("_BaseColor", Color.white);
 		}
 	}
-
-	public void AddForce(Vector2 force) 
-    {
-        sumForces += force;
-    }
-
-    private void ClearForces() 
-    {
-        sumForces = Vector2.zero;
-    }
-
-	public void Integrate(float deltaTime) 
-    {
-		acceleration = sumForces * invMass;
-
-        velocity += acceleration * deltaTime;
-
-        position += velocity * deltaTime;
-
-        transform.position = position.ToVector3();
-
-        ClearForces();
-    }
 }
