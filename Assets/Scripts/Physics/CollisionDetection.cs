@@ -31,11 +31,14 @@ public class CollisionDetection : MonoBehaviour
 	{
 		float da = depth / (a.GetInvMass() + b.GetInvMass()) * a.GetInvMass();
 
-		a.position -= normal * da;
+		//a.position -= normal * da;
+		a.velocity *= -1f;
 	}
 
 	public static void ResolveCollision(Body a, Body b) 
     {
+		float e = Mathf.Min(a.GetRestitution(), b.GetRestitution());
+
 
     }
 }

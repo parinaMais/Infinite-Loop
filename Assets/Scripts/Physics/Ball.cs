@@ -7,7 +7,7 @@ public class Ball : Body
 {
     [SerializeField] private float mass = 1f;
 
-	private Vector2 velocity, acceleration, sumForces;
+	private Vector2 acceleration, sumForces;
 
     // TODO: depois tirar
     private MeshRenderer renderer;
@@ -21,6 +21,8 @@ public class Ball : Body
         else invMass = 0.0f;
 
         radius = transform.localScale.x / 2f;
+
+        restitution = 1f;
 
         renderer = GetComponentInChildren<MeshRenderer>();
     }

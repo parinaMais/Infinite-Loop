@@ -14,12 +14,14 @@ public class Ball_TEST : Body
         radius = transform.localScale.x / 2f;
 
         renderer = GetComponentInChildren<MeshRenderer>();
-    }
+
+		restitution = 1f;
+	}
 
 	private void Update()
 	{
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mousePos.x, mousePos.y, 0f);
+        //transform.position = new Vector3(mousePos.x, mousePos.y, 0f);
 
 		if (isColliding)
         {
