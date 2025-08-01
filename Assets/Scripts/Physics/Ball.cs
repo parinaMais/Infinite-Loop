@@ -27,9 +27,20 @@ public class Ball : MonoBehaviour
         else invMass = 0.0f;
     }
 
+    private void OnEnable()
+    {
+        velocity = Vector2.zero;
+    }
+
     private void Start()
     {
         GameManager.instance.SetBall(this);
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+        this.position = transform.position.ToVector2();
     }
 
     public void AddForce(Vector2 force) 

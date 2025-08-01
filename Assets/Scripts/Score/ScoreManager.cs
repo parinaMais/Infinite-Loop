@@ -23,4 +23,10 @@ public class ScoreManager : MonoBehaviour
     {
         UpdateScore();
     }
+
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("score", shoots);
+        PlayerPrefs.Save();
+    }
 }

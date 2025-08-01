@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 	public void SetBall(Ball ball)
 	{
 		this.ball = ball;
+		SetLevel(1);
 	}
 
 	public void AddLevel(LevelManager level)
@@ -49,6 +50,14 @@ public class GameManager : MonoBehaviour
 		BallMouseInput();
 		ResetInput();
     }
+
+	private void SetLevel(int level)
+	{
+		currentLevel = level;
+		ball.gameObject.SetActive(false);
+		ball.SetPosition(levels[currentLevel].BallPosition);
+		ball.gameObject.SetActive(true);
+	}
 
 	private void FixedUpdate()
 	{
@@ -113,7 +122,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			SetLevel(currentLevel);
 		}
 	}
 
