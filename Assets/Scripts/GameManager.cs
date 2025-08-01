@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 	private Vector3 mouseMotion = Vector3.zero;
 	private bool pressedMouseButton = false;
 
+	public System.Action OnShoot;
+
 	private void Awake()
 	{
 		if (instance != null)
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
 	public void SetBall(Ball ball)
 	{
 		this.ball = ball;
+		ball.OnLaunch += OnShoot;
 	}
 
 	public void AddLevel(LevelManager level)
