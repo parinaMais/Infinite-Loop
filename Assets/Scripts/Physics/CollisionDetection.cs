@@ -11,14 +11,14 @@ public class CollisionDetection : MonoBehaviour
 	public static bool IsCollidingBallCircle(Ball ball, Circle circle)
 	{
 		// Algorithm adapted from Pikuma's Physics Course //
-		Vector2 ballToCircle = circle.transform.position - ball.transform.position; // talvez tenha que mudar a direcao
+		Vector2 circleToBall = ball.transform.position - circle.transform.position;
 		float radiusSum = ball.GetRadius() + circle.GetRadius();
 
-		bool isColliding = ballToCircle.magnitude <= (radiusSum);
+		bool isColliding = circleToBall.magnitude <= (radiusSum);
 
 		if (!isColliding) return false;
 
-		normal = ballToCircle.normalized;
+		normal = circleToBall.normalized;
 		start = circle.transform.position.ToVector2() - (normal * circle.GetRadius());
 		end = ball.transform.position.ToVector2() + (normal * ball.GetRadius());
 		depth = (end - start).magnitude;
@@ -166,8 +166,6 @@ public class CollisionDetection : MonoBehaviour
 
 	public static void ResolveCollisionCircle(Ball ball, Circle circle)
 	{
-		ResolvePenetration(ball);
-
 		ball.velocity *= -1f;
 	}
 }
