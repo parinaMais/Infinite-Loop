@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
     private Vector2[] worldVertices = new Vector2[4];
 
 	// TODO DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
-	private MeshRenderer renderer;
+	private MeshRenderer meshRenderer;
 
 	private void Awake()
 	{
@@ -37,18 +37,18 @@ public class Box : MonoBehaviour
 			worldVertices[i] += transform.position.ToVector2();
 		}
 
-		renderer = GetComponentInChildren<MeshRenderer>();
+		meshRenderer = GetComponentInChildren<MeshRenderer>();
 	}
 
 	private void Update()
 	{
 		if (isColliding)
 		{
-			renderer.material.SetColor("_BaseColor", Color.red);
+			meshRenderer.material.SetColor("_BaseColor", Color.red);
 		}
 		else
 		{
-			renderer.material.SetColor("_BaseColor", Color.white);
+			meshRenderer.material.SetColor("_BaseColor", Color.white);
 		}
 	}
 

@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
     private bool isColliding = false;
 
     // TODO: DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
-    private MeshRenderer renderer;
+    private MeshRenderer meshRenderer;
 
 	private void Awake()
 	{
@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour
 
         radius = transform.localScale.x / 2f;
 
-        renderer = GetComponentInChildren<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     // DEBUG - PRA VERIFICAR A COLISAO // TODO: depois tirar
@@ -36,11 +36,11 @@ public class Ball : MonoBehaviour
 	{
         if (isColliding)
         {
-            renderer.material.SetColor("_BaseColor", Color.red);
+			meshRenderer.material.SetColor("_BaseColor", Color.red);
         }
         else
         {
-			renderer.material.SetColor("_BaseColor", Color.white);
+			meshRenderer.material.SetColor("_BaseColor", Color.white);
 		}
 	}
 
