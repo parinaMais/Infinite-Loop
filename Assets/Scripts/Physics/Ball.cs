@@ -6,43 +6,26 @@ using UnityEngine.UIElements;
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float mass = 1f;
+    [SerializeField] private float radius = 1f;
 
     // TODO: nao eh boa pratica, verificar se depois da pra ser private de novo //
     public Vector2 position, velocity;
 
 	private Vector2 acceleration, sumForces;
 
-    private float invMass, radius;
+    private float invMass;
 
     private bool isColliding = false;
-
-    // TODO: DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
-    private MeshRenderer meshRenderer;
 
 	private void Awake()
 	{
         position = transform.position.ToVector2();
 
+        radius /= 2f;
+
         if (mass != 0.0f) invMass = (1 / mass);
         else invMass = 0.0f;
-
-        radius = transform.localScale.x / 2f;
-
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
-
-    // DEBUG - PRA VERIFICAR A COLISAO // TODO: depois tirar
-	private void Update()
-	{
-        if (isColliding)
-        {
-			meshRenderer.material.SetColor("_BaseColor", Color.red);
-        }
-        else
-        {
-			meshRenderer.material.SetColor("_BaseColor", Color.white);
-		}
-	}
 
 	public void AddForce(Vector2 force) 
     {
@@ -70,6 +53,11 @@ public class Ball : MonoBehaviour
     public void IsColliding(bool state) 
     {
         isColliding = state;
+    }
+
+    public bool GetIsColliding() 
+    {
+        return isColliding;
     }
 
     public float GetRadius() 

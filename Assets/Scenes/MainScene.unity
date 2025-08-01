@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 1612161307}
   - component: {fileID: 1612161306}
   - component: {fileID: 1612161309}
+  - component: {fileID: 1612161310}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -767,7 +768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7181c01487f332c40b3e4f260f561c47, type: 2}
+  - {fileID: 2100000, guid: e91a74c35fe4172418c2acd3de63d2c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -796,7 +797,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612161304}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1612161308
 Transform:
   m_ObjectHideFlags: 0
@@ -925,6 +926,19 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1612161310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612161304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b64c26777a2ef347a48e3a0fe068f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 1774087160}
 --- !u!1 &1755538870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 1
+  radius: 0.8
   position: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
 --- !u!4 &1774087161
