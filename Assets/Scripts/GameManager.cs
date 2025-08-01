@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 		{
 			boxes[i].IsColliding(false);
 
-			if (CollisionDetection.IsColliding(ball, boxes[i]))
+			if (CollisionDetection.IsCollidingBallBox(ball, boxes[i]))
 			{
 				CollisionDetection.ResolveCollision(ball, boxes[i]);
 				ball.IsColliding(true);

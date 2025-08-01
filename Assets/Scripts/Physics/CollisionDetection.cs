@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
@@ -8,7 +8,25 @@ public class CollisionDetection : MonoBehaviour
 	static float depth;
 	static Vector2 normal;
 
-	public static bool IsColliding(Ball ball, Box box) 
+	public static bool IsCollidingBallCircle(Ball ball, Circle circle)
+	{
+		// Algorithm adapted from Pikuma's Physics Course //
+		Vector2 ballToCircle = circle.transform.position - ball.transform.position; // talvez tenha que mudar a direcao
+		float radiusSum = ball.GetRadius() + circle.GetRadius();
+
+		bool isColliding = ballToCircle.magnitude <= (radiusSum);
+
+		if (!isColliding) return false;
+
+		normal = ballToCircle.normalized;
+		start = circle.transform.position.ToVector2() - (normal * circle.GetRadius());
+		end = ball.transform.position.ToVector2() + (normal * ball.GetRadius());
+		depth = (end - start).magnitude;
+
+		return true;
+	}
+
+	public static bool IsCollidingBallBox(Ball ball, Box box) 
     {
 		// Algorithm adapted from Pikuma's Physics Course //
 		Vector2[] boxVertices = box.GetWorldVertices();
@@ -141,8 +159,8 @@ public class CollisionDetection : MonoBehaviour
 		ResolvePenetration(ball);
 
 		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
-		float velocityMagnitude = ball.velocity.magnitude * box.GetFriction();
 
+		float velocityMagnitude = ball.velocity.magnitude * box.GetFriction();
 		ball.velocity = velocityDirection * velocityMagnitude;
     }
 }
