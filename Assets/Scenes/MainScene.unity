@@ -811,7 +811,7 @@ MonoBehaviour:
   - {fileID: 1366830923}
   - {fileID: 2058203535}
   - {fileID: 836923577}
-  mouseStrength: 50
+  mouseStrength: 200
 --- !u!1 &1774087159
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 1
   position: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
 --- !u!4 &1774087161
 Transform:
   m_ObjectHideFlags: 0

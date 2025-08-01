@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
 			if (CollisionDetection.IsColliding(ball, boxes[i]))
 			{
-				CollisionDetection.ResolvePenetration(ball);
+				CollisionDetection.ResolveCollision(ball, boxes[i]);
 				ball.IsColliding(true);
 				boxes[i].IsColliding(true);
 			}

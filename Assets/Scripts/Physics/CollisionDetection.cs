@@ -10,6 +10,7 @@ public class CollisionDetection : MonoBehaviour
 
 	public static bool IsColliding(Ball ball, Box box) 
     {
+		// Algorithm adapted from Pikuma's Physics Course //
 		Vector2[] boxVertices = box.GetWorldVertices();
 
 		bool isOutside = false;
@@ -135,10 +136,11 @@ public class CollisionDetection : MonoBehaviour
 		ball.position += normal * depth;
 	}
 
-	public static void ResolveCollision(Ball a, Box b) 
+	public static void ResolveCollision(Ball ball, Box box) 
     {
-		//float e = Mathf.Min(a.GetRestitution(), b.GetRestitution());
+		ResolvePenetration(ball);
 
-
+		// TODO: desmembrar vetor em dir e mag e adicionar friccao na mag
+		ball.velocity = ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal;
     }
 }

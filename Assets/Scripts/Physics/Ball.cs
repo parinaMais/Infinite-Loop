@@ -7,16 +7,16 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private float mass = 1f;
 
-    // DEBUG ONLY, depois private de novo //
-    public Vector2 position;
+    // TODO: nao eh boa pratica, verificar se depois da pra ser private de novo //
+    public Vector2 position, velocity;
 
-	private Vector2 velocity, acceleration, sumForces;
+	private Vector2 acceleration, sumForces;
 
     private float invMass, radius;
 
     private bool isColliding = false;
 
-    // TODO DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
+    // TODO: DEPOIS REFATORAR ISSO É MUDANÇA DO VISUAL
     private MeshRenderer renderer;
 
 	private void Awake()
@@ -52,6 +52,11 @@ public class Ball : MonoBehaviour
     private void ClearForces() 
     {
         sumForces = Vector2.zero;
+    }
+
+    public void ApplyImpulse(Vector2 j) 
+    {
+        velocity += j;
     }
 
 	public void Integrate(float deltaTime) 

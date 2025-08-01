@@ -62,6 +62,11 @@ public class Box : MonoBehaviour
 		isColliding = state;
 	}
 
+	public Vector2 GetPosition() 
+	{
+		return transform.position.ToVector2();
+	}
+
 	public Vector2 EdgeAt(int index) 
 	{
 		int currVertex = index;
