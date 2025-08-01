@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour
 	void Update()
     {
 		MouseInput();
+    }
 
-        float deltaTime = Time.deltaTime;
-        if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
-		
+	private void FixedUpdate()
+	{
+		float deltaTime = Time.deltaTime;
+		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
+
 		//ball.AddForce();
 
 		ball.Integrate(deltaTime);
@@ -48,9 +51,9 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
-    }
+	}
 
-    private void MouseInput() 
+	private void MouseInput() 
     {
 		if (Input.GetMouseButton(0)) // 0 for left click, 1 right, 2 middle
 		{
