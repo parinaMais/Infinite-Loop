@@ -57,9 +57,6 @@ public class GameManager : MonoBehaviour
 		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
 
 		//ball.AddForce();
-
-		ball.Integrate(deltaTime);
-
 		ball.IsColliding(false);
 
 		for (int i = 0; i <= levels[currentLevel].Bodies.Length - 1; i++)
@@ -88,6 +85,8 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
+
+		ball.Integrate(deltaTime);
 	}
 
 	private void MouseInput() 

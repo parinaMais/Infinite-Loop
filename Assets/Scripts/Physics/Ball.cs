@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private float mass = 1f;
     [SerializeField] private float radius = 1f;
+    [SerializeField] private float maxSpeed = 50f;
     private Vector2 acceleration, sumForces;
     private float invMass;
     private bool isColliding = false;
@@ -46,7 +47,9 @@ public class Ball : MonoBehaviour
     {
 		acceleration = sumForces * invMass;
 
-        velocity += acceleration * deltaTime;
+        velocity += sumForces * deltaTime;
+
+        velocity = velocity.normalized * Mathf.Min(velocity.magnitude, maxSpeed);
 
         position += velocity * deltaTime;
 

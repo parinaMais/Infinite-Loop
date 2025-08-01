@@ -158,6 +158,7 @@ public class CollisionDetection : MonoBehaviour
     {
 		//ResolvePenetration(ball);
 
+		// Reflection formula
 		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
 
 		float velocityMagnitude = ball.velocity.magnitude * box.GetFriction();
@@ -166,6 +167,7 @@ public class CollisionDetection : MonoBehaviour
 
 	public static void ResolveCollisionCircle(Ball ball, Circle circle)
 	{
+		// Flip
 		ball.velocity *= -1f;
 	}
 }
