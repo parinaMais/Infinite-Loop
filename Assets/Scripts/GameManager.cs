@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 	// Input //
 	private Vector3 mouseMotion = Vector3.zero;
 	private bool pressedMouseButton = false;
-	private bool gameRunning = true;
+	private bool gameRunning = false;
 
 	public System.Action OnShoot;
 
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 	public void SetBall(Ball ball)
 	{
 		this.ball = ball;
-		SetLevel();
+		StartCoroutine(SetLevel());
 	}
 
 	public void AddLevel(LevelManager level)
@@ -57,12 +57,17 @@ public class GameManager : MonoBehaviour
 		ResetInput();
     }
 
-	private void SetLevel()
+	private IEnumerator SetLevel()
 	{
-		levels[currentLevel].ShowHide(true);
 		ball.gameObject.SetActive(false);
 		ball.SetPosition(levels[currentLevel].BallPosition);
 		ball.gameObject.SetActive(true);
+		yield return new WaitForEndOfFrame();
+		levels[currentLevel].ShowHide(true);
+				
+		yield return new WaitForSeconds(1f);
+				
+		gameRunning = true;
 	}
 
 	public void ChangeLevel()
@@ -94,11 +99,7 @@ public class GameManager : MonoBehaviour
 					yield break;
 				}
 				
-				SetLevel();
-				
-				yield return new WaitForSeconds(1f);
-				
-				gameRunning = true;
+				StartCoroutine(SetLevel());
 			}
 			
 			yield return null;
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if(ball == null || levels.Count == 0) return;
+		if(ball == null || levels.Count == 0 || !gameRunning) return;
 		
 		float deltaTime = Time.deltaTime;
 		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
@@ -177,7 +178,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			SetLevel();
+			StartCoroutine(SetLevel());
 		}
 	}
 
