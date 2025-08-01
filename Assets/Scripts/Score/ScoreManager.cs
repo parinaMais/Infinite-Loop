@@ -6,12 +6,8 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private int initialScore;
-    [SerializeField] private int penaltyPerSecond;
-    [SerializeField] private int penaltyPerShoot;
     [SerializeField] private TextMeshPro scoreText;
-    private float timeInSeconds;
-    private int shoots;
+    private static int shoots;
 
     private void Start()
     {
@@ -20,12 +16,11 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScore()
     {
-        scoreText.text = "score: " + (initialScore - (penaltyPerSecond * Mathf.RoundToInt(timeInSeconds)) - (penaltyPerShoot * shoots)).ToString(); 
+        scoreText.text = "score: " + shoots; 
     }
 
     private void Update()
     {
-        timeInSeconds += Time.deltaTime;
         UpdateScore();
     }
 }

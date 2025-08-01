@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	// Input //
 	private Vector3 mouseMotion = Vector3.zero;
 	private bool pressedMouseButton = false;
+	private bool gameRunning = true;
 
 	public System.Action OnShoot;
 
@@ -35,7 +36,6 @@ public class GameManager : MonoBehaviour
 	public void SetBall(Ball ball)
 	{
 		this.ball = ball;
-		ball.OnLaunch += OnShoot;
 	}
 
 	public void AddLevel(LevelManager level)
@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
 
 	void Update()
     {
-		MouseInput();
+	    if(!gameRunning) return;
+		BallMouseInput();
 		ResetInput();
     }
 
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
 		ball.Integrate(deltaTime);
 	}
 
-	private void MouseInput() 
+	private void BallMouseInput() 
     {
 		if (Input.GetMouseButton(0)) // 0 for left click, 1 right, 2 middle
 		{
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
 			Vector2 mouseImpulseDirection = (ball.transform.position - mouseMotion).normalized;
 			float mouseImpulseMagnitude = (ball.transform.position - mouseMotion).magnitude * mouseStrength;
 			ball.AddForce(mouseImpulseDirection * mouseImpulseMagnitude);
+			OnShoot?.Invoke();
 		}
 	}
 
