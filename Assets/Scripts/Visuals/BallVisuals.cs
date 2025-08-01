@@ -9,6 +9,17 @@ public class BallVisuals : MonoBehaviour
 
 	MeshRenderer meshRenderer;
 	Material meshMaterial;
+	TrailRenderer trail;
+
+	private void Awake()
+	{
+		trail = GetComponent<TrailRenderer>();
+	}
+
+	private void OnEnable()
+	{
+		trail.Clear();
+	}
 
 	private void Start()
 	{
