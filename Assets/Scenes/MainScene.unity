@@ -1000,6 +1000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1774087161}
   - component: {fileID: 1774087160}
+  - component: {fileID: 1774087162}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1039,6 +1040,21 @@ Transform:
   - {fileID: 1612161308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1774087162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774087159}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68350e31d89f064b8efd1bbd0636dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 1774087160}
+  cellSize: 0.1
+  visitThreshold: 10
 --- !u!1 &1794243673
 GameObject:
   m_ObjectHideFlags: 0

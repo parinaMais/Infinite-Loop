@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float mass = 1f;
     [SerializeField] private float radius = 1f;
+    private Vector2 acceleration, sumForces;
+    private float invMass;
+    private bool isColliding = false;
 
+    public System.Action OnLaunch;
+    
     // TODO: nao eh boa pratica, verificar se depois da pra ser private de novo //
     public Vector2 position, velocity;
-
-	private Vector2 acceleration, sumForces;
-
-    private float invMass;
-
-    private bool isColliding = false;
+    
 
 	private void Awake()
 	{
@@ -30,6 +29,7 @@ public class Ball : MonoBehaviour
 	public void AddForce(Vector2 force) 
     {
         sumForces += force;
+        OnLaunch?.Invoke();
     }
 
     private void ClearForces() 
