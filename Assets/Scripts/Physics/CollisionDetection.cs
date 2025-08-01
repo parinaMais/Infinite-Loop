@@ -156,7 +156,7 @@ public class CollisionDetection : MonoBehaviour
 
 	public static void ResolveCollisionBox(Ball ball, Box box) 
     {
-		//ResolvePenetration(ball);
+		ResolvePenetration(ball);
 
 		// Reflection formula
 		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
