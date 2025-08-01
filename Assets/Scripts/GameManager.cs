@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 	public void SetBall(Ball ball)
 	{
 		this.ball = ball;
-		SetLevel(initialLevel);
+		SetLevel();
 	}
 
 	public void AddLevel(LevelManager level)
@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
 		ResetInput();
     }
 
-	private void SetLevel(int level)
+	private void SetLevel()
 	{
-		currentLevel = level;
+		levels[currentLevel].ShowHide(true);
 		ball.gameObject.SetActive(false);
 		ball.SetPosition(levels[currentLevel].BallPosition);
 		ball.gameObject.SetActive(true);
@@ -93,10 +93,8 @@ public class GameManager : MonoBehaviour
 					Debug.Log("End of game");
 					yield break;
 				}
-
-				levels[currentLevel].ShowHide(true);
 				
-				SetLevel(currentLevel);
+				SetLevel();
 				
 				yield return new WaitForSeconds(1f);
 				
