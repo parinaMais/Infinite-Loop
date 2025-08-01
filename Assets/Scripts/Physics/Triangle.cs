@@ -8,8 +8,8 @@ public class Triangle : Bodies
 
 	private bool isColliding = false;
 
-	private Vector2[] localVertices = new Vector2[4];
-	private Vector2[] worldVertices = new Vector2[4];
+	private Vector2[] localVertices = new Vector2[3];
+	private Vector2[] worldVertices = new Vector2[3];
 
 	private void Awake()
 	{

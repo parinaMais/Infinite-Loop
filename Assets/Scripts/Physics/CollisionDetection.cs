@@ -152,7 +152,7 @@ public class CollisionDetection : MonoBehaviour
 	public static bool IsCollidingBallTriangle(Ball ball, Triangle triangle)
 	{
 		// Algorithm adapted from Pikuma's Physics Course //
-		Vector2[] boxVertices = triangle.GetWorldVertices();
+		Vector2[] triangleVertices = triangle.GetWorldVertices();
 
 		bool isOutside = false;
 		Vector2 minCurrVertex = Vector2.zero;
@@ -160,15 +160,15 @@ public class CollisionDetection : MonoBehaviour
 		float distanceCircleEdge = float.MinValue;
 
 		// Loop all the edges of the box finding the nearest edge to the ball's center
-		for (int i = 0; i < boxVertices.Length; i++)
+		for (int i = 0; i < triangleVertices.Length; i++)
 		{
 			int currVertex = i;
-			int nextVertex = (i + 1) % boxVertices.Length; // wraps up the array
+			int nextVertex = (i + 1) % triangleVertices.Length; // wraps up the array
 			Vector2 edge = triangle.EdgeAt(currVertex);
 			Vector2 normal = edge.GetNormal();
 
 			// Compare the circle center with the box vertex
-			Vector2 vertexToCircleCenter = ball.position - boxVertices[currVertex];
+			Vector2 vertexToCircleCenter = ball.position - triangleVertices[currVertex];
 			float projection = Vector2.Dot(vertexToCircleCenter, normal);
 
 			// If we found a dot product projection that is in the positive/outside side of the normal
@@ -176,8 +176,8 @@ public class CollisionDetection : MonoBehaviour
 			{
 				// Circle center is outside the polygon
 				distanceCircleEdge = projection;
-				minCurrVertex = boxVertices[currVertex];
-				minNextVertex = boxVertices[nextVertex];
+				minCurrVertex = triangleVertices[currVertex];
+				minNextVertex = triangleVertices[nextVertex];
 				isOutside = true;
 				break;
 			}
@@ -187,8 +187,8 @@ public class CollisionDetection : MonoBehaviour
 				if (projection > distanceCircleEdge)
 				{
 					distanceCircleEdge = projection;
-					minCurrVertex = boxVertices[currVertex];
-					minNextVertex = boxVertices[nextVertex];
+					minCurrVertex = triangleVertices[currVertex];
+					minNextVertex = triangleVertices[nextVertex];
 				}
 			}
 		}
@@ -291,8 +291,8 @@ public class CollisionDetection : MonoBehaviour
 
 		// Reflection formula
 		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
+		float velocityMagnitude = ball.velocity.magnitude;
 
-		float velocityMagnitude = ball.velocity.magnitude * box.GetFriction();
 		ball.velocity = velocityDirection * velocityMagnitude;
     }
 
@@ -304,7 +304,11 @@ public class CollisionDetection : MonoBehaviour
 
 	public static void ResolveCollisionTriangle(Ball ball, Triangle triangle)
 	{
-		// Flip
+		// Velocity normal
+		//Vector2 velocityDirection = ball.velocity.GetNormal();
+		//float velocityMagnitude = ball.velocity.magnitude;
+
+		//ball.velocity = velocityDirection * velocityMagnitude;
 		ball.velocity *= -1f;
 	}
 }
