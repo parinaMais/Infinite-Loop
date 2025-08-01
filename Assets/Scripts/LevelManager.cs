@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -17,4 +20,34 @@ public class LevelManager : MonoBehaviour
     {
         GameManager.instance.AddLevel(this);
     }
+
+#if  UNITY_EDITOR
+    public void SetBallPosition(Vector2 position)
+    {
+        ballPosition = position;
+    }
+#endif
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(LevelManager))]
+public class LevelManagerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        LevelManager levelManager = (LevelManager)target;
+
+        if (GUILayout.Button("Get Ball Position"))
+        {
+            Ball ball = FindObjectOfType<Ball>();
+            if (ball != null)
+            {
+                levelManager.SetBallPosition(ball.transform.position);
+            }
+        }
+    }
+}
+
+#endif
