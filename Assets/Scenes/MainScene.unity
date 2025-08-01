@@ -811,7 +811,7 @@ MonoBehaviour:
   - {fileID: 1366830923}
   - {fileID: 2058203535}
   - {fileID: 836923577}
-  mouseStrength: 200
+  mouseStrength: 500
 --- !u!1 &1774087159
 GameObject:
   m_ObjectHideFlags: 0
