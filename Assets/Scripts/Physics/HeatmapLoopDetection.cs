@@ -6,8 +6,8 @@ using UnityEngine;
 public class HeatmapLoopDetection : MonoBehaviour
 {
     [SerializeField] private Ball ball;
-    public float cellSize = 0.5f;
-    public int visitThreshold = 10;
+    [SerializeField] private float cellSize = 0.5f;
+    [SerializeField] private int visitThreshold = 10;
     private Dictionary<Vector2Int, int> heatmap = new Dictionary<Vector2Int, int>();
 
     public System.Action OnLoopDetected;
@@ -20,14 +20,22 @@ public class HeatmapLoopDetection : MonoBehaviour
     private void VerifyLoop()
     {
         heatmap.Clear();
+        speed = ball.velocity.magnitude;
         enabled = true;
     }
 
     private Vector2 pos;
     private Vector2Int cell;
     private Vector2Int lastCell;
+    private float speed;
     private void Update()
     {
+        if (ball.velocity.magnitude < speed)
+        {
+            heatmap.Clear();
+        }
+        
+        speed = ball.velocity.magnitude;
         pos = ball.position;
         cell = new Vector2Int(Mathf.FloorToInt(pos.x / cellSize), Mathf.FloorToInt(pos.y / cellSize));
         if (cell != lastCell)
