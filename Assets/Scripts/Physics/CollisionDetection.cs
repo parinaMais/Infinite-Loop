@@ -178,4 +178,10 @@ public class CollisionDetection : MonoBehaviour
 		// Flip
 		ball.velocity *= -1f;
 	}
+
+	public static void ResolveCollisionTriangle(Ball ball, Triangle triangle)
+	{
+		// Flip
+		ball.velocity *= -1f;
+	}
 }

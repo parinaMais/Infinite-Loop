@@ -2,23 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triangle : Bodies
+public class Triangle : Box
 {
-	[SerializeField] float friction;
-
-	private float width, height;
-
-	private bool isColliding = false;
-
-	private Vector2[] localVertices = new Vector2[3];
-	private Vector2[] worldVertices = new Vector2[3];
-
 	private void Awake()
 	{
 		width = this.transform.localScale.x;
 		height = this.transform.localScale.y;
 	}
-
+	
 	private void Start()
 	{
 		localVertices[0] = new Vector2(-width, -height);
@@ -40,25 +31,8 @@ public class Triangle : Bodies
 		}
 	}
 
-	public Vector2[] GetWorldVertices()
-	{
-		return worldVertices;
-	}
-
 	public override void IsColliding(bool state)
 	{
 		isColliding = state;
-	}
-
-	public override float GetFriction()
-	{
-		return friction;
-	}
-
-	public Vector2 EdgeAt(int index)
-	{
-		int currVertex = index;
-		int nextVertex = (index + 1) % worldVertices.Length;
-		return worldVertices[nextVertex] - worldVertices[currVertex];
 	}
 }

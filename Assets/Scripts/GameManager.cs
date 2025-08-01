@@ -142,6 +142,15 @@ public class GameManager : MonoBehaviour
 					}
 				}
 			}
+			else if (levels[currentLevel].Bodies[i] is Triangle triangle)
+			{
+				if (CollisionDetection.IsCollidingBallBox(ball, triangle))
+				{
+					CollisionDetection.ResolveCollisionTriangle(ball, triangle);
+					ball.IsColliding(true);
+					triangle.IsColliding(true);
+				}
+			}
 		}
 
 		ball.Integrate(deltaTime);

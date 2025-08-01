@@ -6,12 +6,12 @@ public class Box : Bodies
 {
 	[SerializeField] float friction;
 
-    private float width, height;
+    protected float width, height;
 
-	private bool isColliding = false;
+	protected bool isColliding = false;
 
-    private Vector2[] localVertices = new Vector2[4];
-    private Vector2[] worldVertices = new Vector2[4];
+	protected Vector2[] localVertices = new Vector2[4];
+	protected Vector2[] worldVertices = new Vector2[4];
 
 	private void Awake()
 	{
