@@ -140,7 +140,9 @@ public class CollisionDetection : MonoBehaviour
     {
 		ResolvePenetration(ball);
 
-		// TODO: desmembrar vetor em dir e mag e adicionar friccao na mag
-		ball.velocity = ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal;
+		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
+		float velocityMagnitude = ball.velocity.magnitude;
+
+		ball.velocity = velocityDirection * velocityMagnitude;
     }
 }
