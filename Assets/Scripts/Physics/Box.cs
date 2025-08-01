@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Box : Bodies
 {
-	[SerializeField] float friction;
-
     private float width, height;
 
 	private bool isColliding = false;
@@ -45,11 +43,6 @@ public class Box : Bodies
 	public override void IsColliding(bool state)
 	{
 		isColliding = state;
-	}
-
-	public override float GetFriction() 
-	{
-		return friction;
 	}
 
 	public Vector2 EdgeAt(int index) 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Triangle : Bodies
 {
-	private float width, height, friction;
+	private float width, height;
 
 	private bool isColliding = false;
 
@@ -49,10 +49,5 @@ public class Triangle : Bodies
 	public override void IsColliding(bool state)
 	{
 		isColliding = state;
-	}
-
-	public override float GetFriction()
-	{
-		return friction;
 	}
 }
