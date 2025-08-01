@@ -40,10 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void MouseInput() 
     {
-		//mouseMotion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		//mouseMotion.z = 0f;
-		//ball.position = mouseMotion;
-
 		if (Input.GetMouseButton(0)) // 0 for left click, 1 right, 2 middle
 		{
 			pressedMouseButton = true;
