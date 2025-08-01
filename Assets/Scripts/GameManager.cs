@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField] private int initialLevel;
 	[Header("Components")] 
 	[SerializeField] private TextMeshPro loopText;
 	[SerializeField] private TextMeshPro clickText;
@@ -34,12 +35,14 @@ public class GameManager : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
+		
+		currentLevel = initialLevel;
 	}
 
 	public void SetBall(Ball ball)
 	{
 		this.ball = ball;
-		SetLevel(1);
+		SetLevel(initialLevel);
 	}
 
 	public void AddLevel(LevelManager level)
