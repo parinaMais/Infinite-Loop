@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+	[SerializeField] float friction;
+
     private float width, height;
 
 	private bool isColliding = false;
@@ -60,6 +62,11 @@ public class Box : MonoBehaviour
 	public void IsColliding(bool state)
 	{
 		isColliding = state;
+	}
+
+	public float GetFriction() 
+	{
+		return friction;
 	}
 
 	public Vector2 EdgeAt(int index) 

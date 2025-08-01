@@ -141,7 +141,7 @@ public class CollisionDetection : MonoBehaviour
 		ResolvePenetration(ball);
 
 		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
-		float velocityMagnitude = ball.velocity.magnitude;
+		float velocityMagnitude = ball.velocity.magnitude * box.GetFriction();
 
 		ball.velocity = velocityDirection * velocityMagnitude;
     }
