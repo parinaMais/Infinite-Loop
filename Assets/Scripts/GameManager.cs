@@ -1,11 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	[Header("Components")]
+	[Header("Components")] 
+	[SerializeField] private TextMeshPro loopText;
+	[SerializeField] private TextMeshPro clickText;
     private Ball ball;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
@@ -57,6 +60,48 @@ public class GameManager : MonoBehaviour
 		ball.gameObject.SetActive(false);
 		ball.SetPosition(levels[currentLevel].BallPosition);
 		ball.gameObject.SetActive(true);
+	}
+
+	public void ChangeLevel()
+	{
+		StartCoroutine(ChangeLevelCoroutine());
+	}
+	
+	IEnumerator ChangeLevelCoroutine()
+	{
+		loopText.gameObject.SetActive(true);
+		gameRunning = false;
+
+		yield return new WaitForSeconds(1f);
+		
+		clickText.gameObject.SetActive(true);
+
+		while (!gameRunning)
+		{
+			if (Input.anyKeyDown)
+			{
+				loopText.gameObject.SetActive(false);
+				clickText.gameObject.SetActive(false);
+				levels[currentLevel].ShowHide(false);
+				currentLevel++;
+
+				if (currentLevel > levels.Count)
+				{
+					Debug.Log("End of game");
+					yield break;
+				}
+
+				levels[currentLevel].ShowHide(true);
+				
+				SetLevel(currentLevel);
+				
+				yield return new WaitForSeconds(1f);
+				
+				gameRunning = true;
+			}
+			
+			yield return null;
+		}
 	}
 
 	private void FixedUpdate()

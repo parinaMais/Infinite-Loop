@@ -21,10 +21,23 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.AddLevel(this);
     }
 
+    public void ShowHide(bool show)
+    {
+        for (var i = 0; i < bodies.Length; i++)
+        {
+            bodies[i].gameObject.SetActive(show);
+        }
+    }
+
 #if  UNITY_EDITOR
     public void SetBallPosition(Vector2 position)
     {
         ballPosition = position;
+    }
+
+    public void SetBodies(Bodies[] bodies)
+    {
+        this.bodies = bodies;
     }
 #endif
 }
@@ -46,6 +59,11 @@ public class LevelManagerEditor : Editor
             {
                 levelManager.SetBallPosition(ball.transform.position);
             }
+        }
+        
+        if (GUILayout.Button("Get Bodies"))
+        {
+            levelManager.SetBodies(levelManager.GetComponentsInChildren<Bodies>());
         }
     }
 }

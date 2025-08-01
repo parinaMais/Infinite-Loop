@@ -10,8 +10,6 @@ public class HeatmapLoopDetection : MonoBehaviour
     [SerializeField] private int visitThreshold = 10;
     private Dictionary<Vector2Int, int> heatmap = new Dictionary<Vector2Int, int>();
 
-    public System.Action OnLoopDetected;
-
     private void Awake()
     {
         ball.OnLaunch += VerifyLoop;
@@ -49,8 +47,7 @@ public class HeatmapLoopDetection : MonoBehaviour
 
             if (heatmap[cell] >= visitThreshold)
             {
-                OnLoopDetected?.Invoke();
-                Debug.Log("Loop detected");
+                GameManager.instance.ChangeLevel();
                 enabled = false;
             }
 
