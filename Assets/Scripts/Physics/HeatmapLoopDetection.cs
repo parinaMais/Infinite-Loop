@@ -25,23 +25,28 @@ public class HeatmapLoopDetection : MonoBehaviour
 
     private Vector2 pos;
     private Vector2Int cell;
+    private Vector2Int lastCell;
     private void Update()
     {
         pos = ball.position;
         cell = new Vector2Int(Mathf.FloorToInt(pos.x / cellSize), Mathf.FloorToInt(pos.y / cellSize));
-
-        if (heatmap.ContainsKey(cell))
+        if (cell != lastCell)
         {
-            heatmap[cell]++;
-        }
-        else
-            heatmap[cell] = 1;
+            if (heatmap.ContainsKey(cell))
+            {
+                heatmap[cell]++;
+            }
+            else
+                heatmap[cell] = 1;
 
-        if (heatmap[cell] >= visitThreshold)
-        {
-            OnLoopDetected?.Invoke();
-            Debug.Log("Loop detected");
-            enabled = false;
+            if (heatmap[cell] >= visitThreshold)
+            {
+                OnLoopDetected?.Invoke();
+                Debug.Log("Loop detected");
+                enabled = false;
+            }
+
+            lastCell = cell;
         }
     }
     
