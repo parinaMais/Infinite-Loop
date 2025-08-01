@@ -74,11 +74,14 @@ public class GameManager : MonoBehaviour
 			}
 			else if (levels[currentLevel].Bodies[i] is Box box)
 			{
-				if (CollisionDetection.IsCollidingBallBox(ball, box))
+				for (int j = 0; j < 5; j++)
 				{
-					CollisionDetection.ResolveCollisionBox(ball, box);
-					ball.IsColliding(true);
-					box.IsColliding(true);
+					if (CollisionDetection.IsCollidingBallBox(ball, box))
+					{
+						CollisionDetection.ResolveCollisionBox(ball, box);
+						ball.IsColliding(true);
+						box.IsColliding(true);
+					}
 				}
 			}
 		}
