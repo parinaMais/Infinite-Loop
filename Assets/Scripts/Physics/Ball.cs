@@ -29,6 +29,7 @@ public class Ball : MonoBehaviour
 
     private void OnEnable()
     {
+        isColliding = false;
         velocity = Vector2.zero;
     }
 

@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Triangle : Box
+public class Triangle : Bodies
 {
+	private float width, height, friction;
+
+	private bool isColliding = false;
+
+	private Vector2[] localVertices = new Vector2[4];
+	private Vector2[] worldVertices = new Vector2[4];
+
 	private void Awake()
 	{
 		width = this.transform.localScale.x;
@@ -12,6 +19,7 @@ public class Triangle : Box
 	
 	private void Start()
 	{
+		isColliding = false;
 		localVertices[0] = new Vector2(-width, -height);
 		localVertices[1] = new Vector2(width, -height);
 		localVertices[2] = new Vector2(0f, height);
@@ -24,15 +32,27 @@ public class Triangle : Box
 		{
 			worldVertices[i] += transform.position.ToVector2();
 		}
+	}
 
-		for (int i = 0; i < worldVertices.Length; i++)
-		{
-			Debug.Log(worldVertices[i]);
-		}
+	public Vector2[] GetWorldVertices()
+	{
+		return worldVertices;
+	}
+
+	public Vector2 EdgeAt(int index)
+	{
+		int currVertex = index;
+		int nextVertex = (index + 1) % worldVertices.Length;
+		return worldVertices[nextVertex] - worldVertices[currVertex];
 	}
 
 	public override void IsColliding(bool state)
 	{
 		isColliding = state;
+	}
+
+	public override float GetFriction()
+	{
+		return friction;
 	}
 }

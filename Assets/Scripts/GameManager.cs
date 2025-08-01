@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
 			}
 			else if (levels[currentLevel].Bodies[i] is Triangle triangle)
 			{
-				if (CollisionDetection.IsCollidingBallBox(ball, triangle))
+				if (CollisionDetection.IsCollidingBallTriangle(ball, triangle))
 				{
 					CollisionDetection.ResolveCollisionTriangle(ball, triangle);
 					ball.IsColliding(true);
