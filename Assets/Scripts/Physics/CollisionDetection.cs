@@ -154,7 +154,7 @@ public class CollisionDetection : MonoBehaviour
 		ball.position += normal * depth;
 	}
 
-	public static void ResolveCollision(Ball ball, Box box) 
+	public static void ResolveCollisionBox(Ball ball, Box box) 
     {
 		ResolvePenetration(ball);
 
@@ -163,4 +163,11 @@ public class CollisionDetection : MonoBehaviour
 		float velocityMagnitude = ball.velocity.magnitude * box.GetFriction();
 		ball.velocity = velocityDirection * velocityMagnitude;
     }
+
+	public static void ResolveCollisionCircle(Ball ball, Circle circle)
+	{
+		ResolvePenetration(ball);
+
+		ball.velocity *= -1f;
+	}
 }

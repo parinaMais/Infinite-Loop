@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : Bodies
 {
 	[SerializeField] float friction;
 
@@ -42,12 +42,12 @@ public class Box : MonoBehaviour
 		return worldVertices;
 	}
 
-	public void IsColliding(bool state)
+	public override void IsColliding(bool state)
 	{
 		isColliding = state;
 	}
 
-	public float GetFriction() 
+	public override float GetFriction() 
 	{
 		return friction;
 	}

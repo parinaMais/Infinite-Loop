@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
 	[Header("Components")]
     [SerializeField] private Ball ball;
-	[SerializeField] private Box[] boxes;
+	[SerializeField] private Bodies[] bodies;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
 
@@ -25,15 +25,27 @@ public class GameManager : MonoBehaviour
 
 		ball.IsColliding(false);
 
-		for (int i = 0; i <= boxes.Length - 1; i++)
+		for (int i = 0; i <= bodies.Length - 1; i++)
 		{
-			boxes[i].IsColliding(false);
+			bodies[i].IsColliding(false);
 
-			if (CollisionDetection.IsCollidingBallBox(ball, boxes[i]))
+			if (bodies[i] is Circle circle)
 			{
-				CollisionDetection.ResolveCollision(ball, boxes[i]);
-				ball.IsColliding(true);
-				boxes[i].IsColliding(true);
+				if (CollisionDetection.IsCollidingBallCircle(ball, circle))
+				{
+					CollisionDetection.ResolveCollisionCircle(ball, circle);
+					ball.IsColliding(true);
+					circle.IsColliding(true);
+				}
+			}
+			else if (bodies[i] is Box box)
+			{
+				if (CollisionDetection.IsCollidingBallBox(ball, box))
+				{
+					CollisionDetection.ResolveCollisionBox(ball, box);
+					ball.IsColliding(true);
+					box.IsColliding(true);
+				}
 			}
 		}
     }
