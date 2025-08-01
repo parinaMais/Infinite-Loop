@@ -54,11 +54,6 @@ public class Ball : MonoBehaviour
         sumForces = Vector2.zero;
     }
 
-    public void ApplyImpulse(Vector2 j) 
-    {
-        velocity += j;
-    }
-
 	public void Integrate(float deltaTime) 
     {
 		acceleration = sumForces * invMass;
