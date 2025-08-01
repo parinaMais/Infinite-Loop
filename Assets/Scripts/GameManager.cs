@@ -1,24 +1,55 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 	[Header("Components")]
-    [SerializeField] private Ball ball;
-	[SerializeField] private Bodies[] bodies;
+    private Ball ball;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
-
+	public static GameManager instance;
+	private Dictionary<int, LevelManager> levels = new Dictionary<int, LevelManager>();
+	private static int currentLevel = 1;
+	
 	// Input //
 	private Vector3 mouseMotion = Vector3.zero;
 	private bool pressedMouseButton = false;
 
+	private void Awake()
+	{
+		if (instance != null)
+		{
+			Destroy(gameObject);
+		}
+		else
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+	}
+
+	public void SetBall(Ball ball)
+	{
+		this.ball = ball;
+	}
+
+	public void AddLevel(LevelManager level)
+	{
+		levels[level.Key] = level;
+	}
+
 	void Update()
     {
 		MouseInput();
+		ResetInput();
     }
 
 	private void FixedUpdate()
 	{
+		if(ball == null || levels.Count == 0) return;
+		
 		float deltaTime = Time.deltaTime;
 		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
 
@@ -28,11 +59,11 @@ public class GameManager : MonoBehaviour
 
 		ball.IsColliding(false);
 
-		for (int i = 0; i <= bodies.Length - 1; i++)
+		for (int i = 0; i <= levels[currentLevel].Bodies.Length - 1; i++)
 		{
-			bodies[i].IsColliding(false);
+			levels[currentLevel].Bodies[i].IsColliding(false);
 
-			if (bodies[i] is Circle circle)
+			if (levels[currentLevel].Bodies[i] is Circle circle)
 			{
 				if (CollisionDetection.IsCollidingBallCircle(ball, circle))
 				{
@@ -41,7 +72,7 @@ public class GameManager : MonoBehaviour
 					circle.IsColliding(true);
 				}
 			}
-			else if (bodies[i] is Box box)
+			else if (levels[currentLevel].Bodies[i] is Box box)
 			{
 				if (CollisionDetection.IsCollidingBallBox(ball, box))
 				{
@@ -62,12 +93,20 @@ public class GameManager : MonoBehaviour
 			mouseMotion.z = 0f;
 		}
 
-		if (Input.GetMouseButtonUp(0))
+		if (Input.GetMouseButtonUp(0) && ball != null)
 		{
 			pressedMouseButton = false;
 			Vector2 mouseImpulseDirection = (ball.transform.position - mouseMotion).normalized;
 			float mouseImpulseMagnitude = (ball.transform.position - mouseMotion).magnitude * mouseStrength;
 			ball.AddForce(mouseImpulseDirection * mouseImpulseMagnitude);
+		}
+	}
+
+	private void ResetInput()
+	{
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
 

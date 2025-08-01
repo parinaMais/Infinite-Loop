@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,6 @@ public class Ball : MonoBehaviour
     // TODO: nao eh boa pratica, verificar se depois da pra ser private de novo //
     public Vector2 position, velocity;
     
-
 	private void Awake()
 	{
         position = transform.position.ToVector2();
@@ -26,7 +26,12 @@ public class Ball : MonoBehaviour
         else invMass = 0.0f;
     }
 
-	public void AddForce(Vector2 force) 
+    private void Start()
+    {
+        GameManager.instance.SetBall(this);
+    }
+
+    public void AddForce(Vector2 force) 
     {
         sumForces += force;
         OnLaunch?.Invoke();
