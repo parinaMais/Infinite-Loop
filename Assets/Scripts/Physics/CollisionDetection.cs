@@ -149,14 +149,22 @@ public class CollisionDetection : MonoBehaviour
 		return true;
 	}
 
-	public static void ResolvePenetration(Ball ball)
+	public static void ResolvePenetrationReflection(Ball ball)
+	{
+		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
+
+		ball.position += velocityDirection * depth;
+	}
+
+	public static void ResolvePenetrationNormal(Ball ball)
 	{
 		ball.position += normal * depth;
 	}
 
 	public static void ResolveCollisionBox(Ball ball, Box box) 
     {
-		ResolvePenetration(ball);
+		if (box.GetFriction() < 0.9f) ResolvePenetrationNormal(ball);
+		else ResolvePenetrationReflection(ball);
 
 		// Reflection formula
 		Vector2 velocityDirection = (ball.velocity - 2 * (Vector2.Dot(ball.velocity, normal)) * normal).normalized;
