@@ -305,10 +305,10 @@ public class CollisionDetection : MonoBehaviour
 	public static void ResolveCollisionTriangle(Ball ball, Triangle triangle)
 	{
 		// Velocity normal
-		//Vector2 velocityDirection = ball.velocity.GetNormal();
-		//float velocityMagnitude = ball.velocity.magnitude;
+		Vector2 velocityDirection = normal;
+		float velocityMagnitude = ball.velocity.magnitude;
 
 		//ball.velocity = velocityDirection * velocityMagnitude;
-		ball.velocity *= -1f;
+		ball.velocity *= velocityDirection * velocityMagnitude;
 	}
 }
