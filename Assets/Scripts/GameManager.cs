@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			if(currentLevel == 0) yield return new WaitForSeconds(.5f);
+			if(currentLevel == 0) yield return new WaitForSeconds(.75f);
 			
 			if (!levels.ContainsKey(currentLevel))
 			{

@@ -35,11 +35,11 @@ public class BallVisuals : MonoBehaviour
 	{
 		if (ball.GetIsColliding())
 		{
-			meshRenderer.material.SetColor("_BaseColor", Color.white);
+			meshRenderer.material.SetColor("_BaseColor", color);
 		}
 		else
 		{
-			meshRenderer.material.SetColor("_BaseColor", color);
+			meshRenderer.material.SetColor("_BaseColor", Color.white);
 		}
 	}
 }
