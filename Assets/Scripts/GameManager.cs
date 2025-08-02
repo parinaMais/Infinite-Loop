@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
 		while (!gameRunning)
 		{
-			if (Input.anyKeyDown)
+			if (Input.GetMouseButton(0))
 			{
 				loopText.gameObject.SetActive(false);
 				infiniteLoopBG.gameObject.SetActive(false);
