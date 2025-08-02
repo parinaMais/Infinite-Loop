@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator SetLevel()
 	{
+		if(!levels.ContainsKey(currentLevel)) yield break;
 		ball.gameObject.SetActive(false);
 		ball.SetPosition(levels[currentLevel].BallPosition);
 		ball.gameObject.SetActive(true);
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour
 					levels[currentLevel].ShowHide(false);
 					currentLevel++;
 
-					if (currentLevel > levels.Count)
+					if (!levels.ContainsKey(currentLevel))
 					{
 						Debug.Log("End of game");
 						gameWon = true;
@@ -125,6 +126,13 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+			if (!levels.ContainsKey(currentLevel))
+			{
+				Debug.Log("End of game");
+				gameWon = true;
+				yield break;
+			}
+			
 			levels[currentLevel].ShowHide(false);
 			currentLevel++;
 			StartCoroutine(SetLevel());
@@ -138,7 +146,7 @@ public class GameManager : MonoBehaviour
 	private float deltaTime;
 	private void FixedUpdate()
 	{
-		if(ball == null || levels.Count == 0 || gameWon || mainCamera == null) return;
+		if(ball == null || levels.Count == 0 || gameWon || mainCamera == null || !levels.ContainsKey(currentLevel)) return;
 		
 		deltaTime = Time.deltaTime;
 		//if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS
