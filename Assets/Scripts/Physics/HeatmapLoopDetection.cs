@@ -8,6 +8,7 @@ public class HeatmapLoopDetection : MonoBehaviour
     [SerializeField] private Ball ball;
     [SerializeField] private float cellSize = 0.5f;
     [SerializeField] private int visitThreshold = 10;
+    [SerializeField] private bool debugGizmos = false;
     private Dictionary<Vector2Int, int> heatmap = new Dictionary<Vector2Int, int>();
 
     private void Awake()
@@ -58,6 +59,8 @@ public class HeatmapLoopDetection : MonoBehaviour
     void OnDrawGizmos()
     {
         if (heatmap == null) return;
+
+        if (!debugGizmos) return;
 
         foreach (var kvp in heatmap)
         {
