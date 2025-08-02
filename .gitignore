@@ -18,6 +18,10 @@ ehthumbs.db
 # Gradle cache directory
 .gradle/
 
+# Unity Recorder recordings
+Assets/Recordings/
+Recordings/
+
 # Visual Studio / MonoDevelop generated
 # =====================================
 [Ee]xported[Oo]bj/
