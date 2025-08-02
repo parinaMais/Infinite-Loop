@@ -32,6 +32,7 @@ public class Triangle : Bodies
 
 		for (int i = 0; i < worldVertices.Length; i++)
 		{
+			worldVertices[i] = localVertices[i].Rotate(transform.localEulerAngles.z);
 			worldVertices[i] += transform.position.ToVector2();
 		}
 

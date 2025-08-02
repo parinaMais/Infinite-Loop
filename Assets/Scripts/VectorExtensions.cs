@@ -16,4 +16,12 @@ public static class VectorExtensionMethods
 	{
 		return new Vector2(v.y, -v.x).normalized;
 	}
+
+	public static Vector2 Rotate(this Vector2 v, float angle)
+	{
+		float radians = angle * Mathf.Deg2Rad;
+		Vector2 result = new(v.x * Mathf.Cos(radians) - v.y * Mathf.Sin(radians),
+							v.x * Mathf.Sin(radians) + v.y * Mathf.Cos(radians));
+		return result;
+	}
 }
