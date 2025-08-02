@@ -143,11 +143,14 @@ public class GameManager : MonoBehaviour
 			}
 			else if (levels[currentLevel].Bodies[i] is Triangle triangle)
 			{
-				if (CollisionDetection.IsCollidingBallTriangle(ball, triangle))
+				for (int j = 0; j < 5; j++)
 				{
-					CollisionDetection.ResolveCollisionTriangle(ball, triangle);
-					ball.IsColliding(true);
-					triangle.IsColliding(true);
+					if (CollisionDetection.IsCollidingBallTriangle(ball, triangle))
+					{
+						CollisionDetection.ResolveCollisionTriangle(ball, triangle);
+						ball.IsColliding(true);
+						triangle.IsColliding(true);
+					}
 				}
 			}
 		}
