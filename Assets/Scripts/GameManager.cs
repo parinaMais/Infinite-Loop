@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	private bool pressedMouseButton = false;
 	private bool gameRunning = false;
 
+	private bool clickedToContinue = false;
 	public System.Action OnShoot;
 
 	private void Awake()
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 				
 		gameRunning = true;
+		clickedToContinue = false;
 	}
 
 	public void ChangeLevel()
@@ -88,8 +90,9 @@ public class GameManager : MonoBehaviour
 
 		while (!gameRunning)
 		{
-			if (Input.GetMouseButton(0))
+			if (Input.GetMouseButton(0) && !clickedToContinue)
 			{
+				clickedToContinue = true;
 				loopText.gameObject.SetActive(false);
 				infiniteLoopBG.gameObject.SetActive(false);
 				clickText.gameObject.SetActive(false);
