@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallVisuals : MonoBehaviour
 {
 	[SerializeField] Ball ball;
+	[SerializeField] Color color;
 	private float radius;
 
 	MeshRenderer meshRenderer;
@@ -34,11 +35,11 @@ public class BallVisuals : MonoBehaviour
 	{
 		if (ball.GetIsColliding())
 		{
-			meshRenderer.material.SetColor("_BaseColor", Color.red);
+			meshRenderer.material.SetColor("_BaseColor", Color.white);
 		}
 		else
 		{
-			meshRenderer.material.SetColor("_BaseColor", Color.white);
+			meshRenderer.material.SetColor("_BaseColor", color);
 		}
 	}
 }
