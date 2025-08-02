@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
 	private bool clickedToContinue = false;
 	public System.Action OnShoot;
+	public System.Action OnSkip;
 	public Camera mainCamera;
 
 	private void Awake()
@@ -258,6 +259,7 @@ public class GameManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.S))
 		{
+			OnSkip?.Invoke();
 			ChangeLevel(true);
 		}
 	}
