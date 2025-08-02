@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
+
+		Application.targetFrameRate = 60;
+		QualitySettings.vSyncCount = 0;
 		
 		currentLevel = initialLevel;
 		mainCamera = Camera.main;
@@ -126,7 +129,7 @@ public class GameManager : MonoBehaviour
 		if(ball == null || levels.Count == 0 || gameWon || mainCamera == null) return;
 		
 		deltaTime = Time.deltaTime;
-		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
+		//if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS
 
 		if (gameRunning)
 		{
