@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     {
         GameManager.instance.OnShoot += () => { shoots++; };
         GameManager.instance.OnSkip += () => { shoots += skipPenalty; };
+        GameManager.instance.OnEndGame += SaveScore;
     }
 
     private void UpdateScore()
@@ -26,9 +27,21 @@ public class ScoreManager : MonoBehaviour
         UpdateScore();
     }
 
-    public void SaveScore()
+    private void SaveScore()
     {
-        PlayerPrefs.SetInt("score", shoots);
-        PlayerPrefs.Save();
+        var currentScore = PlayerPrefs.GetInt("score");
+
+        if (currentScore <= 0)
+        {
+            PlayerPrefs.SetInt("score", shoots);
+            PlayerPrefs.Save();
+            return;
+        }
+        
+        if (shoots < currentScore)
+        {
+            PlayerPrefs.SetInt("score", shoots);
+            PlayerPrefs.Save();
+        }
     }
 }

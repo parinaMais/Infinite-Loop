@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 	private bool clickedToContinue = false;
 	public System.Action OnShoot;
 	public System.Action OnSkip;
+	public System.Action OnEndGame;
 	public Camera mainCamera;
 
 	private void Awake()
@@ -267,6 +268,7 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator EndGame()
 	{
+		OnEndGame?.Invoke();
 		ball.gameObject.SetActive(false);
 		for (var i = 0; i < endGameTexts.Count; i++)
 		{
