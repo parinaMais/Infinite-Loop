@@ -51,4 +51,9 @@ public class Box : Bodies
 		int nextVertex = (index + 1) % worldVertices.Length;
 		return worldVertices[nextVertex] - worldVertices[currVertex];
 	}
+
+	public override bool GetIsColliding() 
+	{
+		return isColliding;
+	}
 }

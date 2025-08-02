@@ -1956,7 +1956,7 @@ PrefabInstance:
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.69
+      value: -11.79
       objectReference: {fileID: 0}
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
@@ -2766,7 +2766,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21274877
+        value: 0.11973119
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2776,11 +2776,11 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0.9937253
         value: 0
-        inSlope: -0.68456346
-        outSlope: -0.68456346
+        inSlope: -0.08207901
+        outSlope: -0.08207901
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.083993696
+        inWeight: 0.081463866
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -3123,6 +3123,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4385705368099632177, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385705368099632177, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385705368099632177, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3141,7 +3156,7 @@ PrefabInstance:
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
@@ -3837,7 +3852,7 @@ PrefabInstance:
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.13
+      value: 9.03
       objectReference: {fileID: 0}
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}

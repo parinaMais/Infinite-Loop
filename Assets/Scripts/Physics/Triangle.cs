@@ -65,4 +65,9 @@ public class Triangle : Bodies
 	{
 		isColliding = state;
 	}
+
+	public override bool GetIsColliding()
+	{
+		return isColliding;
+	}
 }

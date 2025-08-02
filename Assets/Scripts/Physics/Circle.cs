@@ -20,4 +20,9 @@ public class Circle : Bodies
 	{
 		return radius;
 	}
+
+	public override bool GetIsColliding()
+	{
+		return isColliding;
+	}
 }
