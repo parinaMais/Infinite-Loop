@@ -8,6 +8,8 @@ public class CollisionDetection : MonoBehaviour
 	static float depth;
 	static Vector2 normal;
 
+	static Vector2 triangleNormal;
+
 	public static bool IsCollidingBallCircle(Ball ball, Circle circle)
 	{
 		// Algorithm adapted from Pikuma's Physics Course //
@@ -159,11 +161,30 @@ public class CollisionDetection : MonoBehaviour
 		Vector2 minNextVertex = Vector2.zero;
 		float distanceCircleEdge = float.MinValue;
 
+		triangleNormal = Vector2.zero;
+
 		// Loop all the edges of the box finding the nearest edge to the ball's center
 		for (int i = 0; i < triangleVertices.Length; i++)
 		{
 			int currVertex = i;
 			int nextVertex = (i + 1) % triangleVertices.Length; // wraps up the array
+
+
+			if (currVertex == 0)
+			{
+				triangleNormal = triangle.GetTriangleNormals(0);
+			}
+
+			if (currVertex == 1)
+			{
+				triangleNormal = triangle.GetTriangleNormals(1);
+			}
+
+			if (currVertex == 2)
+			{
+				triangleNormal = triangle.GetTriangleNormals(2);
+			}
+
 			Vector2 edge = triangle.EdgeAt(currVertex);
 			Vector2 normal = edge.GetNormal();
 
@@ -301,11 +322,10 @@ public class CollisionDetection : MonoBehaviour
 
 	public static void ResolveCollisionTriangle(Ball ball, Triangle triangle)
 	{
-		// Velocity normal
-		Vector2 velocityDirection = normal;
+		//// Velocity normal
+		Vector2 velocityDirection = -triangleNormal;
 		float velocityMagnitude = ball.velocity.magnitude;
 
-		//ball.velocity = velocityDirection * velocityMagnitude;
-		ball.velocity *= velocityDirection * velocityMagnitude;
+		ball.velocity = velocityDirection * velocityMagnitude;
 	}
 }

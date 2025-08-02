@@ -11,6 +11,8 @@ public class Triangle : Bodies
 	private Vector2[] localVertices = new Vector2[3];
 	private Vector2[] worldVertices = new Vector2[3];
 
+	private Vector2[] triangleNormals = new Vector2[3];
+
 	private void Awake()
 	{
 		width = this.transform.localScale.x;
@@ -32,11 +34,24 @@ public class Triangle : Bodies
 		{
 			worldVertices[i] += transform.position.ToVector2();
 		}
+
+		for (int i = 0; i < triangleNormals.Length; i++)
+		{
+			int currVertex = i;
+			int nextVertex = (i + 1) % triangleNormals.Length;
+
+			triangleNormals[i] = (worldVertices[currVertex] - worldVertices[nextVertex]).GetNormal();
+		}
 	}
 
 	public Vector2[] GetWorldVertices()
 	{
 		return worldVertices;
+	}
+
+	public Vector2 GetTriangleNormals(int i)
+	{
+		return triangleNormals[i];
 	}
 
 	public Vector2 EdgeAt(int index)
