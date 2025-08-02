@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshPro loopText;
 	[SerializeField] private TextMeshPro clickText;
 	[SerializeField] private List<TextMeshPro> level00Texts = new List<TextMeshPro>();
+	[SerializeField] private List<TextMeshPro> endGameTexts = new List<TextMeshPro>();
 	[SerializeField] private GameObject infiniteLoopBG;
 	[SerializeField] private MouseLine mouseLine;
     private Ball ball;
@@ -127,8 +128,8 @@ public class GameManager : MonoBehaviour
 
 					if (!levels.ContainsKey(currentLevel))
 					{
-						Debug.Log("End of game");
 						gameWon = true;
+						StartCoroutine(EndGame());
 						yield break;
 					}
 
@@ -144,8 +145,8 @@ public class GameManager : MonoBehaviour
 			
 			if (!levels.ContainsKey(currentLevel))
 			{
-				Debug.Log("End of game");
 				gameWon = true;
+				StartCoroutine(EndGame());
 				yield break;
 			}
 			
@@ -262,6 +263,18 @@ public class GameManager : MonoBehaviour
 			OnSkip?.Invoke();
 			ChangeLevel(true);
 		}
+	}
+
+	private IEnumerator EndGame()
+	{
+		ball.gameObject.SetActive(false);
+		for (var i = 0; i < endGameTexts.Count; i++)
+		{
+			endGameTexts[i].gameObject.SetActive(true);
+			yield return new WaitForSeconds(1f);
+		}
+
+		yield return null;
 	}
 
 	private void OnDrawGizmos()
