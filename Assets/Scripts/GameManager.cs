@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
 		if (Input.GetMouseButton(0)) // 0 for left click, 1 right, 2 middle
 		{
 			pressedMouseButton = true;
-			mouseMotion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mouseMotion = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 			mouseMotion.z = 0f;
 		}
 
@@ -201,24 +201,7 @@ public class GameManager : MonoBehaviour
 			float mouseImpulseMagnitude = (ball.transform.position - mouseMotion).magnitude * mouseStrength;
 			ball.AddForce(mouseImpulseDirection * mouseImpulseMagnitude);
 			OnShoot?.Invoke();
-			if(timeScaleChanger != null) StopCoroutine(TimeScaleChanger());
-			timeScaleChanger = StartCoroutine(TimeScaleChanger());
 		}
-	}
-
-	Coroutine timeScaleChanger;
-	IEnumerator TimeScaleChanger()
-	{
-		Time.timeScale = 1;
-		while (true)
-		{
-			Time.timeScale = Mathf.Clamp(Time.timeScale + (0.1f * Time.deltaTime), 1f, 3f);
-			yield return null;
-			
-			if(Time.timeScale >= 3) break;
-		}
-		
-		yield return null;
 	}
 
 	private void ResetInput()
