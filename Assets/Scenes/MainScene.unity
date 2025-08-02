@@ -1631,7 +1631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 6
-  ballPosition: {x: -9.01, y: -2.05}
+  ballPosition: {x: 8.05, y: 1.85}
   bodies:
   - {fileID: 1725092974}
   - {fileID: 1599777918}
@@ -4772,7 +4772,7 @@ PrefabInstance:
     - target: {fileID: 1667563845422096282, guid: 4ea4e0e7a8ceaeb49b5c5f3bd2906c25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.28
+      value: 11.16
       objectReference: {fileID: 0}
     - target: {fileID: 1667563845422096282, guid: 4ea4e0e7a8ceaeb49b5c5f3bd2906c25,
         type: 3}
@@ -5918,7 +5918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7580972a097fa224c93dd75ccf322c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLevel: 6
+  initialLevel: 0
   loopText: {fileID: 92189706}
   clickText: {fileID: 96273022}
   level00Texts:
@@ -5975,7 +5975,7 @@ Transform:
   m_GameObject: {fileID: 1774087159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.01, y: -2.05, z: 0}
+  m_LocalPosition: {x: 8.05, y: 1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5995,7 +5995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 1774087160}
-  cellSize: 0.3
+  cellSize: 0.1
   visitThreshold: 3
   debugGizmos: 1
 --- !u!1 &1787623910
