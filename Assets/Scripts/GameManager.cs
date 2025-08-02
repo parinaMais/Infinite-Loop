@@ -23,9 +23,11 @@ public class GameManager : MonoBehaviour
 	private Vector3 mouseMotion = Vector3.zero;
 	private bool pressedMouseButton = false;
 	private bool gameRunning = false;
+	private bool gameWon = false;
 
 	private bool clickedToContinue = false;
 	public System.Action OnShoot;
+	public Camera mainCamera;
 
 	private void Awake()
 	{
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
 		}
 		
 		currentLevel = initialLevel;
+		mainCamera = Camera.main;
 	}
 
 	public void SetBall(Ball ball)
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
 				if (currentLevel > levels.Count)
 				{
 					Debug.Log("End of game");
+					gameWon = true;
 					yield break;
 				}
 				
@@ -115,13 +119,24 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private Vector3 viewPos;
+	private float deltaTime;
 	private void FixedUpdate()
 	{
-		if(ball == null || levels.Count == 0) return;
+		if(ball == null || levels.Count == 0 || gameWon || mainCamera == null) return;
 		
-		float deltaTime = Time.deltaTime;
+		deltaTime = Time.deltaTime;
 		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
 
+		if (gameRunning)
+		{
+			viewPos = mainCamera.WorldToViewportPoint(ball.transform.position);
+			if (viewPos.x < -0.3f || viewPos.x > 1.3f || viewPos.y < -0.3f || viewPos.y > 1.3f)
+			{
+				StartCoroutine(SetLevel());
+			}
+		}
+		
 		//ball.AddForce();
 		ball.IsColliding(false);
 
