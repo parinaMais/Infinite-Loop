@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[Header("Components")] 
 	[SerializeField] private TextMeshPro loopText;
 	[SerializeField] private TextMeshPro clickText;
+	[SerializeField] private List<TextMeshPro> level00Texts = new List<TextMeshPro>();
 	[SerializeField] private GameObject infiniteLoopBG;
 	[SerializeField] private MouseLine mouseLine;
     private Ball ball;
@@ -76,11 +77,23 @@ public class GameManager : MonoBehaviour
 		ball.gameObject.SetActive(true);
 		yield return new WaitForEndOfFrame();
 		levels[currentLevel].ShowHide(true);
-				
-		yield return new WaitForSeconds(1f);
-				
-		gameRunning = true;
-		clickedToContinue = false;
+
+		if (currentLevel == 0)
+		{
+			for (var i = 0; i < level00Texts.Count; i++)
+			{
+				level00Texts[i].gameObject.SetActive(true);
+				yield return new WaitForSeconds(1.5f);
+			}
+			gameRunning = true;
+			clickedToContinue = false;
+		}
+		else
+		{
+			yield return new WaitForSeconds(1f);
+			gameRunning = true;
+			clickedToContinue = false;
+		}
 	}
 
 	public void ChangeLevel(bool p_skip = false)
@@ -126,6 +139,8 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+			if(currentLevel == 0) yield return new WaitForSeconds(.5f);
+			
 			if (!levels.ContainsKey(currentLevel))
 			{
 				Debug.Log("End of game");
@@ -220,6 +235,16 @@ public class GameManager : MonoBehaviour
 			Vector2 mouseImpulseDirection = (ball.transform.position - mouseMotion).normalized;
 			float mouseImpulseMagnitude = (ball.transform.position - mouseMotion).magnitude * mouseStrength;
 			ball.AddForce(mouseImpulseDirection * mouseImpulseMagnitude);
+			
+			if(currentLevel == 0)
+			{
+				for (var i = 0; i < level00Texts.Count; i++)
+				{
+					level00Texts[i].gameObject.SetActive(false);
+				}
+				ChangeLevel(true);
+			}
+			
 			OnShoot?.Invoke();
 		}
 	}
