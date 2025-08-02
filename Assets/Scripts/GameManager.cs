@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[Header("Components")] 
 	[SerializeField] private TextMeshPro loopText;
 	[SerializeField] private TextMeshPro clickText;
+	[SerializeField] private GameObject infiniteLoopBG;
     private Ball ball;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
 	IEnumerator ChangeLevelCoroutine()
 	{
 		loopText.gameObject.SetActive(true);
+		infiniteLoopBG.gameObject.SetActive(true);
 		gameRunning = false;
 
 		yield return new WaitForSeconds(1f);
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
 			if (Input.anyKeyDown)
 			{
 				loopText.gameObject.SetActive(false);
+				infiniteLoopBG.gameObject.SetActive(false);
 				clickText.gameObject.SetActive(false);
 				levels[currentLevel].ShowHide(false);
 				currentLevel++;
