@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
 			}
 			else if (levels[currentLevel].Bodies[i] is Triangle triangle)
 			{
-				for (int j = 0; j < 5; j++)
+				for (int j = 0; j < 15; j++)
 				{
 					if (CollisionDetection.IsCollidingBallTriangle(ball, triangle))
 					{
