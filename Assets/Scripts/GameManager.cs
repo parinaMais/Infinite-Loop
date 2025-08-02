@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if(ball == null || levels.Count == 0 || !gameRunning) return;
+		if(ball == null || levels.Count == 0) return;
 		
 		float deltaTime = Time.deltaTime;
 		if (deltaTime > 0.016) deltaTime = 0.016f; // cap at ~60FPS, TODO: talvez mudar pra 0.033s que seria 30FPS, verificar
