@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshPro loopText;
 	[SerializeField] private TextMeshPro clickText;
 	[SerializeField] private GameObject infiniteLoopBG;
+	[SerializeField] private MouseLine mouseLine;
     private Ball ball;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
@@ -57,7 +58,9 @@ public class GameManager : MonoBehaviour
 	    if(!gameRunning) return;
 		BallMouseInput();
 		ResetInput();
-    }
+		if (pressedMouseButton) mouseLine.DrawLine(ball.transform.position + ((ball.transform.position - mouseMotion).normalized) * 0.7f, mouseMotion);
+		else mouseLine.ClearLine();
+	}
 
 	private IEnumerator SetLevel()
 	{
