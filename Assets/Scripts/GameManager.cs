@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
 	    if(!gameRunning) return;
 		BallMouseInput();
-		ResetInput();
+		ResetSkipInput();
 		if (pressedMouseButton) mouseLine.DrawLine(ball.transform.position + ((ball.transform.position - mouseMotion).normalized) * 0.7f, mouseMotion);
 		else mouseLine.ClearLine();
 	}
@@ -82,45 +82,57 @@ public class GameManager : MonoBehaviour
 		clickedToContinue = false;
 	}
 
-	public void ChangeLevel()
+	public void ChangeLevel(bool p_skip = false)
 	{
-		StartCoroutine(ChangeLevelCoroutine());
+		StartCoroutine(ChangeLevelCoroutine(p_skip));
 	}
 	
-	IEnumerator ChangeLevelCoroutine()
+	IEnumerator ChangeLevelCoroutine(bool p_skip)
 	{
-		loopText.gameObject.SetActive(true);
-		infiniteLoopBG.gameObject.SetActive(true);
 		gameRunning = false;
-
-		yield return new WaitForSeconds(1f);
-		
-		clickText.gameObject.SetActive(true);
-
-		while (!gameRunning)
+		if (!p_skip)
 		{
-			if (Input.GetMouseButton(0) && !clickedToContinue)
-			{
-				clickedToContinue = true;
-				loopText.gameObject.SetActive(false);
-				infiniteLoopBG.gameObject.SetActive(false);
-				clickText.gameObject.SetActive(false);
-				levels[currentLevel].ShowHide(false);
-				currentLevel++;
+			loopText.gameObject.SetActive(true);
+			infiniteLoopBG.gameObject.SetActive(true);
 
-				if (currentLevel > levels.Count)
+			yield return new WaitForSeconds(1f);
+
+			clickText.gameObject.SetActive(true);
+
+			while (!gameRunning)
+			{
+				if (Input.GetMouseButton(0) && !clickedToContinue)
 				{
-					Debug.Log("End of game");
-					gameWon = true;
-					yield break;
+					clickedToContinue = true;
+					loopText.gameObject.SetActive(false);
+					infiniteLoopBG.gameObject.SetActive(false);
+					clickText.gameObject.SetActive(false);
+					levels[currentLevel].ShowHide(false);
+					currentLevel++;
+
+					if (currentLevel > levels.Count)
+					{
+						Debug.Log("End of game");
+						gameWon = true;
+						yield break;
+					}
+
+					StartCoroutine(SetLevel());
 				}
 				
-				StartCoroutine(SetLevel());
+				yield return null;
 			}
-			
-			yield return null;
 		}
+		else
+		{
+			levels[currentLevel].ShowHide(false);
+			currentLevel++;
+			StartCoroutine(SetLevel());
+		}
+
+		yield return null;
 	}
+	
 
 	private Vector3 viewPos;
 	private float deltaTime;
@@ -204,11 +216,16 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void ResetInput()
+	private void ResetSkipInput()
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			StartCoroutine(SetLevel());
+		}
+
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			ChangeLevel(true);
 		}
 	}
 
