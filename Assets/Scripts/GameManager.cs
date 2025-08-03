@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private List<TextMeshPro> endGameTexts = new List<TextMeshPro>();
 	[SerializeField] private GameObject infiniteLoopBG;
 	[SerializeField] private MouseLine mouseLine;
+	[SerializeField] private List<ParticleSystem> infiniteLoopParticles = new List<ParticleSystem>();
     private Ball ball;
 	[Header("Settings")]
 	[SerializeField] private float mouseStrength = 5f;
@@ -111,6 +112,10 @@ public class GameManager : MonoBehaviour
 		{
 			loopText.gameObject.SetActive(true);
 			infiniteLoopBG.gameObject.SetActive(true);
+			for (var i = 0; i < infiniteLoopParticles.Count; i++)
+			{
+				infiniteLoopParticles[i].Play();
+			}
 
 			yield return new WaitForSeconds(1f);
 
