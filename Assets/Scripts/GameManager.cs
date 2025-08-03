@@ -218,6 +218,10 @@ public class GameManager : MonoBehaviour
 					}
 				}
 			}
+			else if (levels[currentLevel].Bodies[i] is BlackHole blackHole)
+			{
+				if (CollisionDetection.IsCollidingBallBlackHole(ball, blackHole)) StartCoroutine(SetLevel());
+			}
 		}
 
 		ball.Integrate(deltaTime);

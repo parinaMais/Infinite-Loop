@@ -28,6 +28,14 @@ public class CollisionDetection : MonoBehaviour
 		return true;
 	}
 
+	public static bool IsCollidingBallBlackHole(Ball ball, BlackHole blackHole)
+	{
+		Vector2 circleToBall = ball.transform.position - blackHole.transform.position;
+		float radiusSum = ball.GetRadius() + blackHole.GetRadius();
+
+		return circleToBall.magnitude <= (radiusSum);
+	}
+
 	public static bool IsCollidingBallBox(Ball ball, Box box) 
     {
 		// Algorithm adapted from Pikuma's Physics Course //
