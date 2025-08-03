@@ -8662,7 +8662,7 @@ PrefabInstance:
     - target: {fileID: 2541495279015150912, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7776037266559777382, guid: 1f49c70a15a2e1c4d8b0d6378c176f97,
         type: 3}
@@ -9886,7 +9886,7 @@ PrefabInstance:
     - target: {fileID: 2936824057134616449, guid: 4ea4e0e7a8ceaeb49b5c5f3bd2906c25,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14590,7 +14590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7580972a097fa224c93dd75ccf322c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLevel: 5
+  initialLevel: 0
   loopText: {fileID: 92189706}
   clickText: {fileID: 96273022}
   level00Texts:
@@ -14690,7 +14690,7 @@ PrefabInstance:
     - target: {fileID: 4042561391365684965, guid: 1ec22e0767613d04cabc76fd5f6c201a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6410100301552058174, guid: 1ec22e0767613d04cabc76fd5f6c201a,
         type: 3}
@@ -15315,6 +15315,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackHole
       objectReference: {fileID: 0}
+    - target: {fileID: 9167712394454420180, guid: ccf4d625b460b9f45aa7889466819d7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15372,7 +15377,7 @@ PrefabInstance:
     - target: {fileID: 4042561391365684965, guid: 1ec22e0767613d04cabc76fd5f6c201a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6410100301552058174, guid: 1ec22e0767613d04cabc76fd5f6c201a,
         type: 3}
