@@ -149,15 +149,14 @@ public class GameManager : MonoBehaviour
 		{
 			if(currentLevel == 0) yield return new WaitForSeconds(.75f);
 			
+			levels[currentLevel].ShowHide(false);
+			currentLevel++;
 			if (!levels.ContainsKey(currentLevel))
 			{
 				gameWon = true;
 				StartCoroutine(EndGame());
 				yield break;
 			}
-			
-			levels[currentLevel].ShowHide(false);
-			currentLevel++;
 			StartCoroutine(SetLevel());
 		}
 
