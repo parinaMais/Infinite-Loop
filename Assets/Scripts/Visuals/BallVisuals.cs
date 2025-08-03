@@ -6,6 +6,7 @@ public class BallVisuals : MonoBehaviour
 {
 	[SerializeField] Ball ball;
 	[SerializeField] Color color;
+	[SerializeField] ParticleSystem particle;
 	private float radius;
 
 	MeshRenderer meshRenderer;
@@ -31,15 +32,20 @@ public class BallVisuals : MonoBehaviour
 		meshMaterial.SetFloat("_Radius", radius);
 	}
 
+	private float timer;
 	private void Update()
 	{
+		timer += Time.deltaTime;
 		if (ball.GetIsColliding())
 		{
+			timer = 0;
 			meshRenderer.material.SetColor("_BaseColor", color);
+			particle.Play();
 		}
-		else
+		else if(timer >= .2f)
 		{
 			meshRenderer.material.SetColor("_BaseColor", Color.white);
+			particle.Stop();
 		}
 	}
 }
