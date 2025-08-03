@@ -1259,7 +1259,7 @@
     "m_Title": "Adds distortion to the circle",
     "m_Position": {
         "x": -2106.0,
-        "y": 849.0000610351563
+        "y": 849.0
     }
 }
 
@@ -3775,8 +3775,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1406.0001220703125,
-            "y": 175.00003051757813,
+            "x": -1341.0,
+            "y": 278.0,
             "width": 110.0,
             "height": 34.0
         }
